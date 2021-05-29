@@ -1,18 +1,20 @@
-.feedOption{
+.inputOption {
     display: flex;
     align-items: center;
     margin-top: 15px;
     color: gray;
     padding: 10px;
     cursor: pointer;
+
 }
 
-.feedOption:hover{
+.inputOption:hover{
     background-color: whitesmoke;
     border-radius: 10px;
+
 }
 
-.feedOption > h4{
+.inputOption > h4{
     margin-left: 5px;
-
+    
 }
