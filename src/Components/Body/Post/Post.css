@@ -23,9 +23,8 @@
     overflow-wrap: anywhere;
 }
 
-.post-info > h2 {
-    font-size: 14px;
-
+.post-info > h2 { 
+   font-size: 14px;
 }
 
 .post-buttons {
