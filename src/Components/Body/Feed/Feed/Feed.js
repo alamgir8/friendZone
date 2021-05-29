@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import CreateIcon from '@material-ui/icons/Create';
 import './Feed.css'
@@ -38,14 +39,22 @@ const Feed = () => {
         })
     }
 
+
+
+const Feed = () => {
     return (
         <div className="feed">
             <div className="feed-container">
                 <div className="feed-input">
                     <CreateIcon/>
                     <form>
+
                         <input onChange={(e) => setInput(e.target.value)} type="text"/>
                         <button onClick={sendPosts} type='submit'>Send</button>
+
+                        <input type="text"/>
+                        <button type='submit'>Send</button>
+
                     </form>
                 </div>
                 <div className="feed-input-option">
@@ -55,6 +64,7 @@ const Feed = () => {
                     <FeedOption Icon={MoodIcon} title='Activity' color='#70B5F9'/>
                 </div>
             </div>
+
             {
                 posts.map(({id, data : {name, description, message, photoUrl}}) => (
                     <Post
@@ -67,6 +77,7 @@ const Feed = () => {
                 ))
             }
            
+
         </div>
     );
 };
