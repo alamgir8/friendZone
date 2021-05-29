@@ -15,7 +15,7 @@ const Feed = () => {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        db.collection("posts").onSnapshot(snapshot => (
+        db.collection("posts").orderBy("timestamp", "desc").onSnapshot(snapshot => (
             setPosts(
                 snapshot.docs.map((doc) => (
                 {
@@ -65,7 +65,7 @@ const Feed = () => {
             {
                 posts.map(({id, data : {name, description, message, photoUrl}}) => (
                     <Post
-                    id={id}
+                    key={id}
                     name={name}
                     description={description}
                     message={message}
