@@ -4,11 +4,11 @@ import React from 'react';
 import InputOption from './InputOption';
 import './Post.css'
 
-const Post = ({ name, description, message, photoUrl }) => {
+const Post = ({ name, description, message, photoURL }) => {
     return (
         <div className="post">
             <div className="post-header">
-            <Avatar />
+            <Avatar src={photoURL}>{name[0]}</Avatar>
             <div className="post-info">
                 <h2>{name}</h2>
                 <p>{description}</p>

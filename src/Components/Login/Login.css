@@ -1,0 +1,30 @@
+
+/* .login{
+    display: grid;
+    margin: auto;
+    padding: 100px 0;
+    place-items: center;
+} */
+
+.login > .card> img{
+    height: 70px;
+    margin: 20px 0;
+    object-fit: contain;
+}
+
+/* .login > form {
+    display: flex;
+    flex-direction: column;
+} */
+/* .login > form > input{
+    width: 350px;
+    height: 40px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+} */
+.register{
+    cursor: pointer;
+    color: blue;
+}

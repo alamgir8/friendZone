@@ -6,8 +6,17 @@ import HomeIcon from '@material-ui/icons/Home';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import { Chat, Notifications } from '@material-ui/icons';
 import HeaderOption from '../HeaderOption/HeaderOption';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../features/userSlice';
+import { auth } from '../../Firebase/Firebase';
 
 const Header = () => {
+    const dispatch = useDispatch()
+
+    const logoutUser = () => {
+        dispatch(logout());
+        auth.signOut()
+    }
     return (
         <div className="header">
             <div className="header-left">
@@ -23,7 +32,7 @@ const Header = () => {
                 <HeaderOption Icon={SupervisorAccountIcon} title="My Zone"/>
                 <HeaderOption Icon={Chat} title="Messaging"/>
                 <HeaderOption Icon={Notifications} title="Notifications"/>
-                <HeaderOption avatar="https://i.ibb.co/sJtStzv/Miftahul-Islam-image.jpg" title="Me" />
+                <HeaderOption onClick={logoutUser} avatar={true} title="Me" />
             </div>
         </div>
     );

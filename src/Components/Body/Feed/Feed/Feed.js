@@ -9,10 +9,13 @@ import MoodIcon from '@material-ui/icons/Mood';
 import Post from '../Post/Post';
 import firebase from 'firebase'
 import { db } from '../../../Firebase/Firebase';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../../../features/userSlice';
 
 const Feed = () => {
     const [input, setInput] = useState('')
     const [posts, setPosts] = useState([])
+    const user = useSelector(selectUser)
 
     useEffect(() => {
         db.collection("posts").orderBy("timestamp", "desc").onSnapshot(snapshot => (
@@ -30,10 +33,10 @@ const Feed = () => {
         e.preventDefault()
 
         db.collection("posts").add({
-            name : 'Alamgir',
-            description : 'Web-Developer',
+            name : user.displayName,
+            description : user.email,
             message : input,
-            photoUrl : '',
+            photoURL : user.photoURL || " ",
             timestamp : firebase.firestore.FieldValue.serverTimestamp()
         })
         setInput('')
@@ -63,13 +66,13 @@ const Feed = () => {
             </div>
 
             {
-                posts.map(({id, data : {name, description, message, photoUrl}}) => (
+                posts.map(({id, data : {name, description, message, photoURL}}) => (
                     <Post
                     key={id}
                     name={name}
                     description={description}
                     message={message}
-                    photoUrl={photoUrl}
+                    photoURL={photoURL}
                     />
                 ))
             }
