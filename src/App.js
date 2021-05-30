@@ -30,17 +30,17 @@ function App() {
     })
   }, [])
   return (
-    <div className="App">
+    <div>
       <Header/>
     
-        <div className="app-body">
+        <div className="app-body container">
           {!user ? 
           <Login/> :
           <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-4">
             <Sidebar/>
           </div>
-          <div className="col-md-3">
+          <div className="col-md-6">
             <Feed/>
           </div>
         </div>

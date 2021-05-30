@@ -11,6 +11,7 @@ import firebase from 'firebase'
 import { db } from '../../../Firebase/Firebase';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../../../features/userSlice';
+import FlipMove from 'react-flip-move';
 
 const Feed = () => {
     const [input, setInput] = useState('')
@@ -46,15 +47,10 @@ const Feed = () => {
         <div className="feed">
             <div className="feed-container">
                 <div className="feed-input">
-                    <CreateIcon/>
                     <form>
-
-                        <input onChange={(e) => setInput(e.target.value)} type="text"/>
+                        <input onChange={(e) => setInput(e.target.value)} type="text" placeholder={`What's on your mind now, ${user.displayName}?`}/>
                         <button onClick={sendPosts} type='submit'>Send</button>
-
-                        <input type="text"/>
                         <button type='submit'>Send</button>
-
                     </form>
                 </div>
                 <div className="feed-input-option">
@@ -65,10 +61,12 @@ const Feed = () => {
                 </div>
             </div>
 
+            <FlipMove>
             {
                 posts.map(({id, data : {name, description, message, photoURL}}) => (
                     <Post
                     key={id}
+                    id={id}
                     name={name}
                     description={description}
                     message={message}
@@ -76,6 +74,7 @@ const Feed = () => {
                     />
                 ))
             }
+            </FlipMove>
            
 
         </div>

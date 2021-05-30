@@ -17,7 +17,7 @@ const Sidebar = () => {
         <div className="sidebar">
             <div className="sidebar-top">
                 <img src="https://i.ibb.co/TKTfGG6/linked-In-bg.png" alt="" />
-                <Avatar src={user?.photoURL} className="sidebar-avatar">
+                <Avatar src={user?.photoUrl} className="sidebar-avatar">
                     {user?.email[0]}
                 </Avatar>
                 <h2>{user.displayName}</h2>
