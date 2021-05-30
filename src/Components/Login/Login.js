@@ -59,9 +59,10 @@ const Login = () => {
    
     return (
         <div className='login'>
-            <div className="my-5 card p-4">
-                <div className="mx-auto">
-                    <img className='img-fluid' src={logo} alt="logo" /> 
+            <div className="my-5 card w-50 p-4 mx-auto">
+                <div className="d-flex align-items-center justify-content-center pb-4">
+                    <img className='img-fluid' src={logo} alt="logo" />
+                    <span className='display-4'>FriendZone</span>
                 </div>
                 <div className="mx-auto">
                     <form>
@@ -71,7 +72,7 @@ const Login = () => {
                         <input className='form-control my-2 mx-auto' value={password} onChange={(e) => setPassword(e.target.value)} name='password' type="password" placeholder="Password" required/>
                         <button onClick={signIn} type='submit' className='btn btn-success form-control'>Sign In</button>
                     </form>
-                    <p className='mt-3'>Not have Account?<span onClick={register} className='register'> Register Now</span></p>
+                    <p className='mt-3 text-center'>Not have Account?<span onClick={register} className='register'> Register Now</span></p>
                 </div>
             </div>
         </div>

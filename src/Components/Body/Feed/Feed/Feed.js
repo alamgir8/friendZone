@@ -32,12 +32,12 @@ const Feed = () => {
 
     const sendPosts = (e) => {
         e.preventDefault()
-
+        console.log(user.photoURL);
         db.collection("posts").add({
             name : user.displayName,
             description : user.email,
             message : input,
-            photoURL : user.photoURL || " ",
+            photoURL : user.photoURL || "",
             timestamp : firebase.firestore.FieldValue.serverTimestamp()
         })
         setInput('')
@@ -50,7 +50,7 @@ const Feed = () => {
                     <form>
                         <input onChange={(e) => setInput(e.target.value)} type="text" placeholder={`What's on your mind now, ${user.displayName}?`}/>
                         <button onClick={sendPosts} type='submit'>Send</button>
-                        <button type='submit'>Send</button>
+
                     </form>
                 </div>
                 <div className="feed-input-option">
