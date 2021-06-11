@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import CreateIcon from '@material-ui/icons/Create';
 import './Feed.css'
 import FeedOption from '../FeedOption/FeedOption';
 import ImageIcon from '@material-ui/icons/Image';
