@@ -11,10 +11,11 @@ import { db } from '../../../Firebase/Firebase';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../../../features/userSlice';
 import FlipMove from 'react-flip-move';
+import swal from "sweetalert";
 
 const Feed = () => {
     const [input, setInput] = useState('')
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState([]);
     const user = useSelector(selectUser)
 
     useEffect(() => {
@@ -31,15 +32,25 @@ const Feed = () => {
 
     const sendPosts = (e) => {
         e.preventDefault()
-        console.log(user.photoURL);
-        db.collection("posts").add({
-            name : user.displayName,
-            description : user.email,
-            message : input,
-            photoURL : user.photoURL || "",
-            timestamp : firebase.firestore.FieldValue.serverTimestamp()
-        })
-        setInput('')
+        
+        if (!input) {
+            swal({
+                title: "Please Write your post first!",
+                icon: "error",
+              });
+              
+        }
+        
+        else{
+            db.collection("posts").add({
+                name : user.displayName,
+                description : user.email,
+                message : input,
+                photoURL : user.photoURL || "",
+                timestamp : firebase.firestore.FieldValue.serverTimestamp()
+            })
+            setInput('')
+        }
     }
 
     return (
