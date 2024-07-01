@@ -1,18 +1,31 @@
-import './App.css';
-import Header from './Components/Header/Header/Header';
-import Sidebar from './Components/Body/Sidebar/Sidebar';
-import Feed from './Components/Body/Feed/Feed/Feed';
-
+import "./App.css";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import Home from "./Components/Body/Home/Home";
+import Login from "./Components/Login/Login";
+import Signup from "./Components/Login/Signup";
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
-      <div className="app-body">
-        <Sidebar/>
-        <Feed/>
-      </div>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/home">
+          <Home />
+        </Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/signup">
+          <Signup />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

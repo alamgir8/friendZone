@@ -1,0 +1,14 @@
+
+
+
+.login > .card> img{
+    height: 70px;
+    margin: 21px 0;
+    object-fit: contain;
+}
+
+
+.register{
+    cursor: pointer;
+    color: blue;
+}

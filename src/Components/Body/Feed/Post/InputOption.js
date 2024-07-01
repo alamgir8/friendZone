@@ -6,6 +6,7 @@ function InputOption({Icon, title, color}) {
         <div className="inputOption">
             <Icon style={{ color: color}}/>
             <h4>{title}</h4>
+
         </div>
 
     );
