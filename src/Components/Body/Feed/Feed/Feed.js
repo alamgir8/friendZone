@@ -1,4 +1,8 @@
+
 import React, { useEffect, useState } from 'react';
+import CreateIcon from '@material-ui/icons/Create';
+
+
 import './Feed.css'
 import FeedOption from '../FeedOption/FeedOption';
 import ImageIcon from '@material-ui/icons/Image';
@@ -6,12 +10,40 @@ import SubscriptionsIcon from '@material-ui/icons/Subscriptions';
 import EventIcon from '@material-ui/icons/Event';
 import MoodIcon from '@material-ui/icons/Mood';
 import Post from '../Post/Post';
+
+import { db } from '../../../../img/Firebase/Firebase';
 import firebase from 'firebase'
-import { db } from '../../../Firebase/Firebase';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../../../features/userSlice';
-import FlipMove from 'react-flip-move';
-import swal from "sweetalert";
+
+const Feed = () => {
+    const [input, setInput] = useState('')
+    const [posts, setPosts] = useState([])
+
+    useEffect(() => {
+        db.collection("posts").onSnapshot(snapshot => (
+            setPosts(
+                snapshot.docs.map((doc) => (
+                {
+                    id : doc.id,
+                    data : doc.data()
+                }
+            )))
+        ))
+    }, [])
+
+    const sendPosts = (e) => {
+        e.preventDefault()
+
+        db.collection("posts").add({
+            name : 'Alamgir',
+            description : 'Web-Developer',
+            message : input,
+            photoUrl : '',
+            timestamp : firebase.firestore.FieldValue.serverTimestamp()
+        })
+    }
+
+
+
 
 const Feed = () => {
     const [input, setInput] = useState('')
@@ -58,8 +90,14 @@ const Feed = () => {
             <div className="feed-container">
                 <div className="feed-input">
                     <form>
-                        <input onChange={(e) => setInput(e.target.value)} type="text" placeholder={`What's on your mind now, ${user.displayName}?`}/>
+
+
+                        <input onChange={(e) => setInput(e.target.value)} type="text"/>
                         <button onClick={sendPosts} type='submit'>Send</button>
+
+                        <input type="text"/>
+                        <button type='submit'>Send</button>
+
 
                     </form>
                 </div>
@@ -71,21 +109,23 @@ const Feed = () => {
                 </div>
             </div>
 
-            <FlipMove>
+
             {
-                posts.map(({id, data : {name, description, message, photoURL}}) => (
+                posts.map(({id, data : {name, description, message, photoUrl}}) => (
                     <Post
-                    key={id}
+
+            <FlipMove>
+
                     id={id}
                     name={name}
                     description={description}
                     message={message}
-                    photoURL={photoURL}
+
+                    photoUrl={photoUrl}
                     />
                 ))
             }
-            </FlipMove>
-           
+
 
         </div>
     );
